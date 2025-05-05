@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<head>
+  <title>Редактор JavaScript</title>
+  <style>
+    body {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    canvas {
+      border: 1px dashed black;
+    }
+
+    #canvas-title, canvas {
+      margin-left: 1em;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h2>Базовое задание</h2>
+    <p>Задание: определить номер первого столбца матрицы, в котором есть хотя бы один
+      отрицательный элемент.</p>
+    <p>Введите скрипт:</p>
+    <textarea id="mycode" rows=40 cols=100>
+n = 5, m = 5;
+
+res = document.getElementById("result");
+var matrix = generateMatrix(n, m);
+displayMatrix(res);
+res.value += `\nНомер первого столбца матрицы, в котором есть хотя бы один отрицательный элемент: ${findColWithNeg(matrix) + 1}`;
+
+function randint(min, max) {
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
+}
+
+function generateMatrix(n, m) {
+  var matrix = [];
+  [negI, negJ] = [randint(0, n - 1), randint(0, m - 1)];
+  negCount = 0;
+  for (let i = 0; i < n; i++) {
+    matrix.push([]);
+    for (let j = 0; j < m; j++)
+      if (i == negI && j == negJ || negCount == 1 && j > negJ) {
+        negCount++;
+        matrix[i].push(randint(-10, -1));
+      } else
+        matrix[i].push(randint(0, 10));
+  }
+  return matrix;
+}
+
+function findColWithNeg(a) {
+  for (let i = 0; i < a.length; i++)
+    for (let j = 0; j < a[i].length; j++)
+      if (a[i][j] < 0)
+        return j;
+}
+
+function displayMatrix(elem) {
+  matrix.forEach(line => {elem.value += "|\t" + line.join("\t|\t") + "\t|\n"});
+}</textarea>
+    <br><br><button onclick="document.getElementById('mycode').value=''">Очистить код</button>
+    <br/><p>Результат:</p>
+    <textarea id="result" rows=7 cols=100></textarea><br><br>
+    <button type="button" onclick="document.getElementById('result').value=''; eval(document.getElementById('mycode').value)">Выполнить</button>
+    <button type="button" onclick="document.getElementById('result').value=''">Очистить результат</button>
+  </div>
+  <br><hr>
+  <div>
+    <h2>Расширенное задание</h2>
+    <table style="border: 0">
+      <tr><td>Введите текст программы на javascript:</td>
+      <td><span id="canvas-title">Отображение рисунка: </span></td></tr>
+      <tr><td><textarea id="mycode2" style="width: 675px; height: 400px;">
+var canvas = document.getElementById("drawingCanvas");
+var c = canvas.getContext("2d");
+w = canvas.width, h = canvas.height;
+c.clearRect(0, 0, w, h);
+
+rectW = 20, rectH = 17;
+x = w / 2 - rectW / 2 - rectW * 8;
+y = h / 2 - rectH / 2;
+for (let _i = 1, _j = 0; _i <= 17; _i += 2, _j++) {
+  p = Math.floor(_j / 4);
+  i = _i - p * (_j % 4 + (p - 1) * 2) * 4;
+  j = _j - p * (_j % 4 + (p - 1) * 2) * 2;
+  let col = i - j - 1;
+  if (j % 2 == 0)
+    for (let k = (col ? -col : 0); k <= col; k++) {
+      c.fillStyle = '#0070c0';
+      c.fillRect(x + rectW * _i, y + rectH * k * 2, rectW, rectH);
+    }
+  else {
+    c.fillStyle = '#92d050';
+    c.fillRect(x + rectW * _i, y - rectH * col * 2, rectW, rectH * (i * 2 - 1));
+  }
+}</textarea></td>
+      <td><canvas id="drawingCanvas" width="675" height="400">
+        Ваш браузер не поддерживает canvas
+      </canvas></td>
+      </tr>
+    </table>
+    <br>
+    <button onclick= "eval(document.getElementById('mycode2').value)">
+      Отобразить рисунок
+    </button>
+  </div>
+</body>
+
+</html>
