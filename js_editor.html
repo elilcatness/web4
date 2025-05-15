@@ -1,30 +1,92 @@
 <!DOCTYPE html>
 <head>
   <title>Редактор JavaScript</title>
+  <!-- <link rel="stylesheet" href="static/style/index.css"> -->
   <style>
     body {
-      width: 90%;
-      margin-left: auto;
-      margin-right: auto;
+      margin-left: 1em;
+      margin-right: 1em;
+      background-image: linear-gradient(#cacaca, #a9f3c2);
+    }
+
+    
+
+    #header > h3:first-letter {
+      color: white;
+      background-color: black;
+      border-radius: 2px;
+      box-shadow: 3px 3px 0 red;
+      font-size: 250%;
+      padding: 6px 3px;
+      margin-right: 6px;
+      float: left;
+    }
+
+    .logo {
+      max-height: 5%;
+      max-width: 5%;
+      float: left;
+    }
+
+    .site-name {
+      float: left;
+      margin-left: 0.3em;
+    }
+
+    .page-name {
+      float: right;
+      clear: right;
     }
 
     canvas {
       border: 1px dashed black;
+      background-color: white;
     }
 
     #canvas-title, canvas {
       margin-left: 1em;
     }
+
+    #content {
+      clear: both;
+      margin-left: 1em;
+    }
+
+    #footer {
+      color: gray;
+    }
+
+    a:link {
+      color: gray;
+    }
+
+    a:visited {
+      color: red;
+    }
   </style>
 </head>
 
 <body>
-  <div>
-    <h2>Базовое задание</h2>
-    <p>Задание: определить номер первого столбца матрицы, в котором есть хотя бы один
-      отрицательный элемент.</p>
-    <p>Введите скрипт:</p>
-    <textarea id="mycode" rows=40 cols=100>
+  <div id="header">
+    <img class="logo" src="static/img/logo.webp">
+    <h3 class="site-name">Вычислительная техника России</h3>
+    <h3 class="page-name">История вычислительной техники России</h3>
+    <br style="clear: both;"><br><hr>
+    <ul>
+      <li><a href="index.html">История вычислительной техники России</a></li>
+      <li><a href="usage.html">Применение вычислительной техники России</a></li>
+      <li><a href="sources.html">Источники</a></li>
+    </ul>
+    <hr><br>
+  </div>
+
+  <div id="content">
+    <div>
+      <h2>Базовое задание</h2>
+      <p>Задание: определить номер первого столбца матрицы, в котором есть хотя бы один
+        отрицательный элемент.</p>
+      <p>Введите скрипт:</p>
+      <textarea id="mycode" rows=40 cols=100>
 n = 5, m = 5;
 
 res = document.getElementById("result");
@@ -64,19 +126,19 @@ function findColWithNeg(a) {
 function displayMatrix(elem) {
   matrix.forEach(line => {elem.value += "|\t" + line.join("\t|\t") + "\t|\n"});
 }</textarea>
-    <br><br><button onclick="document.getElementById('mycode').value=''">Очистить код</button>
-    <br/><p>Результат:</p>
-    <textarea id="result" rows=7 cols=100></textarea><br><br>
-    <button type="button" onclick="document.getElementById('result').value=''; eval(document.getElementById('mycode').value)">Выполнить</button>
-    <button type="button" onclick="document.getElementById('result').value=''">Очистить результат</button>
-  </div>
-  <br><hr>
-  <div>
-    <h2>Расширенное задание</h2>
-    <table style="border: 0">
-      <tr><td>Введите текст программы на javascript:</td>
-      <td><span id="canvas-title">Отображение рисунка: </span></td></tr>
-      <tr><td><textarea id="mycode2" style="width: 675px; height: 400px;">
+      <br><br><button onclick="document.getElementById('mycode').value=''">Очистить код</button>
+      <br/><p>Результат:</p>
+      <textarea id="result" rows=7 cols=100></textarea><br><br>
+      <button type="button" onclick="document.getElementById('result').value=''; eval(document.getElementById('mycode').value)">Выполнить</button>
+      <button type="button" onclick="document.getElementById('result').value=''">Очистить результат</button>
+    </div>
+    <br><hr>
+    <div>
+      <h2>Расширенное задание</h2>
+      <table>
+        <tr><td>Введите текст программы на javascript:</td>
+        <td><span id="canvas-title">Отображение рисунка: </span></td></tr>
+        <tr><td><textarea id="mycode2" style="width: 675px; height: 400px;">
 var canvas = document.getElementById("drawingCanvas");
 var c = canvas.getContext("2d");
 w = canvas.width, h = canvas.height;
@@ -100,15 +162,24 @@ for (let _i = 1, _j = 0; _i <= 17; _i += 2, _j++) {
     c.fillRect(x + rectW * _i, y - rectH * col * 2, rectW, rectH * (i * 2 - 1));
   }
 }</textarea></td>
-      <td><canvas id="drawingCanvas" width="675" height="400">
-        Ваш браузер не поддерживает canvas
-      </canvas></td>
-      </tr>
-    </table>
-    <br>
-    <button onclick= "eval(document.getElementById('mycode2').value)">
-      Отобразить рисунок
-    </button>
+        <td><canvas id="drawingCanvas" width="675" height="400">
+          Ваш браузер не поддерживает canvas
+        </canvas></td>
+        </tr>
+      </table>
+      <br>
+      <button onclick= "eval(document.getElementById('mycode2').value)">
+        Отобразить рисунок
+      </button>
+    </div>
+  </div>
+  <div id="footer">
+    <br><hr><br>
+    <div style="margin-bottom: 1em">(c) ЭВМ России (1991-2025)</div>
+    <address>
+      <a href="mailto:rus-computers@yandex.ru">Написать нам</a>
+      <p>Россия, г. Москва, ул. Пушкина, д. 21</p>
+    </address>
   </div>
 </body>
 

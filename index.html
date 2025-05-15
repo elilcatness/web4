@@ -1,3 +1,5 @@
+<!-- Вариант №16 -->
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -14,20 +16,40 @@
 </head>
 <body>
   <div id="header">
-    <img class="logo" src="static/img/logo.webp">
-    <h3 class="site-name">Вычислительная техника России</h3>
-    <h3 class="page-name">История вычислительной техники России</h3>
-    <br style="clear: both;"><br><hr>
+    <div id="subheader">
+      <img class="logo" src="static/img/logo.webp">
+      <h3 class="site-name">Вычислительная техника России</h3>
+      <h3 class="page-name">История вычислительной техники России</h3>
+      <br style="clear: both;"><br><hr>
+    </div>
     <ul>
       <li><a href="usage.html">Применение вычислительной техники России</a></li>
       <li><a href="sources.html">Источники</a></li>
       <li><a href="js_editor.html">ЛР №3</a></li>
     </ul>
+    <button id="show-authors" onclick="alert('Потапов Сергей Антонович, группа 4231')">
+      Авторы
+    </button>
     <hr><br>
   </div>
   <div id="content">
-    <div class="quote-container">
-      <blockquote>"Россия имеет <span class="underlined">все необходимые предпосылки для развития собственной вычислительной техники:</span> научный потенциал, инженерные кадры и исторический опыт. Однако для успешного конкурирования на мировом уровне требуется не только технологический прорыв, но и системная поддержка со стороны государства, а также интеграция усилий науки, образования и промышленности"</blockquote>
+    <ul>
+      <li><kbd>M</kbd> - включить/выключить бегущую строку</li>
+      <li><kbd>W</kbd> - ускорить бегущую строку</li>
+      <li><kbd>S</kbd> - замедлить бегущую строку</li>
+      <li><kbd>D</kbd> - установить исходную скорость бегущей строки</li>
+      <li><kbd>R</kbd> - вернуть бегущую строку в исходное положение</li>
+    </ul>
+    <br>
+    <p class="movable">Бегущая строка 1</p>
+    <p class="movable">Бегущая строка 2</p>
+    <br>
+    <div class="half-right-container">
+      <div class="quote-container">
+        <blockquote>"Россия имеет <span class="underlined">все необходимые предпосылки для развития собственной вычислительной техники:</span> научный потенциал, инженерные кадры и исторический опыт. Однако для успешного конкурирования на мировом уровне требуется не только технологический прорыв, но и системная поддержка со стороны государства, а также интеграция усилий науки, образования и промышленности"</blockquote>
+      </div>
+      <br>
+      <button type="button" onclick="increaseQuoteSize()">Увеличить</button>
     </div>
     <p id="first-sentence" style="color: blue;">При рассмотрении вопроса вычислительной техники России стоит начать с определений</p>
     <p>Сначала определим общие термины:</p>
@@ -42,22 +64,21 @@
       <dd>Содержимое энергонезависимой памяти любого цифрового вычислительного устройства — видеокамеры, микрокалькулятора, сотового телефона, GPS-навигатора и т. д., в которой содержится его программа</dd>
     </dl>
     <br><hr><br>
-    <ol>
-      <li>Теоретическая подготовка</li>
-      <ol>
-        <li>Разработка математических основ вычислений</li>
-        <li>Создание алгоритмических моделей (например, машина Тьюринга)</li>
-        <li>Формулировка принципов работы вычислительных устройств</li>
-        <li>Определение структуры ЭВМ</li>
+    <ol id="stages">
+      <li>Теоретическая подготовка
         <ol>
-          <li>Определение структуры ЭВМ</li>
-          <ol>
-            <li>Процессор</li>
-            <li>Память</li>
-            <li>Устройства ввода-вывода</li>
-          </ol>
+          <li>Разработка математических основ вычислений</li>
+          <li>Создание алгоритмических моделей (например, машина Тьюринга)</li>
+          <li>Формулировка принципов работы вычислительных устройств</li>
+          <li>Определение структуры ЭВМ
+            <ol>
+              <li>Процессор</li>
+              <li>Память</li>
+              <li>Устройства ввода-вывода</li>
+            </ol>
+          </li>
         </ol>
-      </ol>
+      </li>
     </ol>
     <br>
     <table>
@@ -174,7 +195,16 @@
         </tr>
       </tfoot>
     </table>
-    <br><hr><br>
+    <form>
+      <input type="text" id="year" placeholder="Год">
+      <input type="text" id="event" placeholder="Событие / Система">
+      <input type="text" id="dev" placeholder="Разработчик">
+      <input type="text" id="specs" placeholder="Ключевые характеристики">
+      <input type="text" id="imp" placeholder="Значение">
+      <button type="button" onclick="appendTable()">Добавить строку</button>
+      <button type="button" onclick="clearNewTableRows()">Удалить добавленные строки</button>
+    </form>
+    <br><br><hr><br>
     <img class="blurred" src="static/img/elbrus-2000.jpg" style="width: 32.3%; margin-right: 1.5%; float: left;">
     <img src="static/img/baikail-t1.png" style="width: 32.3%; margin-right: 1.5%; float: left;">
     <img class="transformable" src="static/img/skif.png" style="width: 32.3%; float: left;">
@@ -197,7 +227,7 @@
     <p>За 30 лет российская вычислительная техника прошла сложный путь. В 1990-е годы наблюдался упадок после распада СССР, но научный потенциал сохранился. В 2000-е произошло развитие суперкомпьютеров и первых российских процессоров. 2010-е годы ознаменовались попытками импортозамещения на фоне санкций. В 2020-е начался вынужденный переход на RISC-V и другие открытые стандарты.</p> 
     <p>Главные проблемы сегодня — нехватка современных производственных мощностей (российские чипы делают на устаревших 28–65 нм техпроцессах) и зависимость от зарубежных компонентов. Однако в долгосрочной перспективе развитие RISC-V и квантовых вычислений может дать России новые возможности.</p>
     <br><hr><br>
-    <iframe width="720" height="405" src="https://rutube.ru/play/embed/88d42aea5fed40b0735bf8c7dcb11754/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen style="display: block; margin: 0 auto;"></iframe>
+    <!-- <iframe width="720" height="405" src="https://rutube.ru/play/embed/88d42aea5fed40b0735bf8c7dcb11754/" frameBorder="0" allow="clipboard-write; autoplay" webkitAllowFullScreen mozallowfullscreen allowFullScreen style="display: block; margin: 0 auto;"></iframe> -->
   </div>
   <br><hr><br>
   <div id="footer">
@@ -207,5 +237,6 @@
       <p>Россия, г. Москва, ул. Пушкина, д. 21</p>
     </address>
   </div>
+  <script src="static/js/script.js"></script>
 </body>
 </html>

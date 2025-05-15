@@ -5,6 +5,16 @@ body {
   background-image: linear-gradient(#cacaca, #a9f3c2);
 }
 
+.fixed {
+  position: fixed;
+  padding: 10px;
+  margin: 0;
+  top: 0;
+  left: 0;
+  background-color: rgba(202, 202, 202, 0.67);
+  z-index: 99999;
+}
+
 .logo {
   max-height: 5%;
   max-width: 5%;
@@ -26,9 +36,12 @@ body {
   margin-left: 1em;
 }
 
-.quote-container {
+.half-right-container {
   width: 50%;
   margin-left: auto;
+}
+
+.quote-container {
   font-size: 5mm;
 }
 
@@ -102,7 +115,15 @@ td:hover {
   color: yellow;
 }
 
+#stages {
+  padding-left: 0;
+}
+
 ol {
+  list-style-type: none;
+}
+
+/* ol {
   list-style: none;
   counter-reset: li;
 }
@@ -110,9 +131,9 @@ ol {
 ol > li:before {
   counter-increment: li; 
   content: counters(li,".") ". ";
-}
+} */
 
-#header > h3:first-letter {
+#subheader > h3:first-letter {
   color: white;
   background-color: black;
   border-radius: 2px;
